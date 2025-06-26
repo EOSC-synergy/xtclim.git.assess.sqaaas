@@ -1,0 +1,78 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/clemoule/xtclim:
+      branch: notebook_integration
+      repo: https://github.com/clemoule/xtclim.git
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/clemoule/xtclim git:
+        commands:
+        - /usr/bin/env sh .sqa/script.seedy-carmine-coyote.sh
+        container: qc.acc_hazy-scarlet-markhor
+  QC.Doc:
+    repos:
+      github.com/clemoule/xtclim find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.dorky-scarlet-dachshund.sh
+        container: qc.doc_gloppy-goldenrod-bee
+      github.com/clemoule/xtclim git:
+        commands:
+        - /usr/bin/env sh .sqa/script.flaky-sapphire-lemur.sh
+        container: qc.doc_snazzy-persimmon-weasel
+      github.com/clemoule/xtclim markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.squeaky-chestnut-blue.sh
+        container: qc.doc_crabby-cardinal-chamois
+  QC.Lic:
+    repos:
+      github.com/clemoule/xtclim licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.nippy-denim-argentino.sh
+        container: qc.lic_stealthy-cyan-maltese
+  QC.Met:
+    repos:
+      github.com/clemoule/xtclim validate_codemeta:
+        commands:
+        - /usr/bin/env sh .sqa/script.whiny-goldenrod-bongo.sh
+        container: qc.met_lanky-maroon-salamander
+  QC.Sec:
+    repos:
+      github.com/clemoule/xtclim bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.pasty-peach-angora.sh
+        container: qc.sec_geeky-wheat-manatee
+  QC.Sty:
+    repos:
+      github.com/clemoule/xtclim flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.beady-violet-mule.sh
+        container: qc.sty_scummy-ochre-ibis
+      github.com/clemoule/xtclim hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.lousy-crimson-baboon.sh
+        container: qc.sty_wimpy-ultramarine-jaguar
+      github.com/clemoule/xtclim jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.boozy-grey-boar.sh
+        container: qc.sty_lovely-purple-dragonfly
+  QC.Uni:
+    repos:
+      github.com/clemoule/xtclim pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.slaphappy-corn-neanderthal.sh
+        container: qc.uni_crappy-champagne-sponge
+  QC.Ver:
+    repos:
+      github.com/clemoule/xtclim get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.wheezy-goldenrod-dragon.sh
+        container: qc.ver_beady-cobalt-wolfhound
+timeout: 5400
